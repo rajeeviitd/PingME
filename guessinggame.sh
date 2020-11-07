@@ -1,22 +1,28 @@
-#!/usr/bin/env bash
+#Tested on remote unix shell
 
-function guess(){
-    true_ans=$(ls -l |grep "^-"|wc -l)
-    while true;
-    do
-        echo "Pleas enter your guess number"
-        read  number
-        if [ $number -lt $true_ans ]
-        then
-            echo "Your guess is Less than the true number"
-        elif [ $number -gt $true_ans ]
-        then
-            echo "Your guess is greather than then true number"
-        else
-            echo " Congrats,you are right!"
-        break;
-        fi
-    done
+#global variable accessible to both functions
+
+files_pwd=$(ls -l |grep "^-"|wc -l)
+
+function guessing_game(){	
+
+   if [[ $1 -lt $2 ]]          
+    then
+	echo "Number less than real count, increment and guess again"
+    elif [[ $1 -gt $2 ]]
+    then
+	echo "Number greater than real count, decrement and guess again"
+    else
+	echo ""
+	echo "WOoo! Cogratulations won the game!"
+    fi				
 }
-echo "Guess the files number in the current directory!"
-guess
+
+while [[ $files_pwd -ne $guess ]]    
+do
+    read -p "Guess how many files are in the pwd? " guess
+    # call guessing_game function
+    echo $(guessing_game $guess $files_pwd)
+    echo ""
+done
+
