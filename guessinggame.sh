@@ -8,19 +8,19 @@ function guessing_game(){
 
    if [[ $1 -lt $2 ]]          
     then
-	echo "Number less than real count, increment and guess again"
+	echo "too low"
     elif [[ $1 -gt $2 ]]
     then
-	echo "Number greater than real count, decrement and guess again"
+	echo "too high"
     else
 	echo ""
-	echo "WOoo! Cogratulations won the game!"
+	echo "congratulations!"
     fi				
 }
 
 while [[ $files_pwd -ne $guess ]]    
 do
-    read -p "Guess how many files are in the pwd? " guess
+    read -p "how many files are in the current directory" guess
     # call guessing_game function
     echo $(guessing_game $guess $files_pwd)
     echo ""
