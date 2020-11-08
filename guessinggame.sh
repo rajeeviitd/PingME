@@ -1,9 +1,7 @@
 #Tested on remote unix shell
 
 #global variable accessible to both functions
-
-#files_pwd=$(ls -l |grep "^-"|wc -l)
-files_pwd=$(ls -l | wc -l)
+files_pwd=$(ls -l | grep ^- | wc -l)
 function guessing_game(){	
 
    if [[ $1 -lt $2 ]]          
